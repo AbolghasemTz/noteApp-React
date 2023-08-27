@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 
-function AddNewNote() {
+function AddNewNote({setNotes}) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+ 
+  console.log(notes);
   const handelSubmit = (e) => {
     e.preventDefault();
    const newNote = {
@@ -12,7 +14,9 @@ function AddNewNote() {
     completed: false,
     createdAt:new Date().toISOString()
    }
-   console.log(newNote);
+   setTitle("")
+   setDescription("")
+   setNotes((prevState) => [...notes,newNote])
   };
 
   return (
