@@ -1,13 +1,13 @@
 import React from "react";
 
-function NoteItem({ note,onDeleteNote }) {
+function NoteItem({ note, onDeleteNote, onCompleted }) {
   const options = {
     year: "numeric",
     month: "long",
     day: "numeric",
   };
   return (
-    <div className="note-item">
+    <div key={note.id} className={`note-item ${note.completed ? "completed" : ""}`}>
       <div className="note-item__header">
         <div className="">
           <p className="title">{note.title}</p>
@@ -15,7 +15,14 @@ function NoteItem({ note,onDeleteNote }) {
         </div>
         <div className="actions">
           <button onClick={() => onDeleteNote(note.id)}>x</button>
-          <input type="checkbox" name="" id="" />
+          <input
+            type="checkbox"
+            name=""
+            id={note.id}
+            value={note.id}
+            onChange={onCompleted}
+            checked={note.completed}
+          />
         </div>
       </div>
       <div className="note-item__footer">
